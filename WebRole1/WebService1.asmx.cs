@@ -60,13 +60,13 @@ namespace WebRole1
             {
                 using (StreamReader sr = new StreamReader(filepath))
                 {
-                    String line;
+                    String line;    
                     while ((line = sr.ReadLine()) != null)
                     {
-                        if (lineCount % 1000 == 0)
+                        if (lineCount % 2000 == 0)
                         {
                             float memUsage = memProcess.NextValue();
-                            if (memUsage < 50)
+                            if (memUsage < 5)
                             {
                                 break;
                             }

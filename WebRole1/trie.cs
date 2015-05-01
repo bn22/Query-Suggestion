@@ -87,12 +87,25 @@ namespace WebRole1
                     {
                         pos = 26;
                     }
-                    root = root.child[pos];
+                    try
+                    {
+                        root = root.child[pos];
+                    }
+                    catch (NullReferenceException)
+                    {
+                    }
                     lastLetterOfPrefix = root;
                 }
                 for (int i = 0; i < 27; i++)
                 {
-                    listPopulator(root.child[i], results);
+                    try
+                    {
+                        listPopulator(root.child[i], results);
+                    }
+                    catch (NullReferenceException)
+                    {
+
+                    }
                 }
             }
             return results;
@@ -100,11 +113,7 @@ namespace WebRole1
 
         private void listPopulator(trieNode root, List<String> results)
         {
-            if (root == null || results.Count() >= 10)
-            {
-
-            }
-            else
+            if (root != null && results.Count() <= 10)
             {
                 if (root.word == true)
                 {
