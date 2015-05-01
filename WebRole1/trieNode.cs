@@ -23,7 +23,7 @@ namespace WebRole1
         }
 
         /// <summary>
-        /// This creates a trieNode object that accounts a character and a string as parameters
+        /// This creates a trieNode object that accepts a character and a string as parameters
         /// </summary>
         /// <param name="character">char</param>
         /// <param name="value">String</param>
