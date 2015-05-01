@@ -8,15 +8,33 @@ namespace WebRole1
     public class trie
     {
         private trieNode root;
+
+        /// <summary>
+        /// This method creates the initalize trie, which contains a single trieNode.
+        /// </summary>
         public trie()
         {
             this.root = new trieNode();
         }
+
+        /// <summary>
+        ///This method adds the given String into the trie 
+        /// </summary>
+        /// <param name="title">String</param>
         public void addTitles(String title)
         {
             title = title.ToLower();
             root = addTitlesHelper(title, root);
         }
+
+        /// <summary>
+        /// This method returns the child of the current root so the given String can be stored.
+        /// If a trieNode doesn't exist, this method will create a new trieNode to store the current
+        /// letter of the given String
+        /// </summary>
+        /// <param name="title">String</param>
+        /// <param name="root">trieNode</param>
+        /// <returns>trieNode</returns>
         private trieNode addTitlesHelper(String title, trieNode root)
         {
             int pos = title[0] - 'a';
@@ -46,6 +64,13 @@ namespace WebRole1
             return root;
         }
 
+        /// <summary>
+        /// This method uses the given String to find the 10 possible suggestions from the trie.
+        /// The 10 possible suggestions is returned as a List<String>
+        /// </summary>
+        /// <param name="prefix">String</param>
+        /// <returns>List<String></returns>
+
         public List<String> findSuggestions(String prefix)
         {
             prefix = prefix.ToLower();
@@ -71,6 +96,14 @@ namespace WebRole1
             return findSuggestionsHelper(prefix, root, results);
         }
 
+        /// <summary>
+        /// This method tranverses through the trie using the given String. This finds location
+        /// of the trieNode that are the child of the last character in the given String
+        /// </summary>
+        /// <param name="prefix">String</param>
+        /// <param name="root">trieNode</param>
+        /// <param name="results">List<String></param>
+        /// <returns>List<String></returns>
         private List<String> findSuggestionsHelper(String prefix, trieNode root, List<String> results)
         {
             trieNode lastLetterOfPrefix = new trieNode();
@@ -111,6 +144,12 @@ namespace WebRole1
             return results;
         }
 
+        /// <summary>
+        /// This method uses the given trieNode to check if they are the end of the word. If the given trieNode is the end of the word,
+        /// it is added to the given List<String> that stores the 10 possible results.
+        /// </summary>
+        /// <param name="root">trieNode</param>
+        /// <param name="results">List<String></param>
         private void listPopulator(trieNode root, List<String> results)
         {
             if (root != null && results.Count() <= 10)

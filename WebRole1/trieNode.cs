@@ -12,6 +12,9 @@ namespace WebRole1
         public Boolean word;
         public String value;
 
+        /// <summary>
+        /// This creates a new trieNode object that doesn't take into account any parameters
+        /// </summary>
         public trieNode()
         {
             this.child = new trieNode[27];
@@ -19,6 +22,11 @@ namespace WebRole1
             this.word = false;
         }
 
+        /// <summary>
+        /// This creates a trieNode object that accounts a character and a string as parameters
+        /// </summary>
+        /// <param name="character">char</param>
+        /// <param name="value">String</param>
         public trieNode(char character, String value)
         {
             this.child = new trieNode[27];

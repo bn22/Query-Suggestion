@@ -27,6 +27,9 @@ namespace WebRole1
         private static trie wikiTitles = new trie();
         private static String filepath;
 
+        /// <summary>
+        /// This web method downloads the wiki file from the blob storage.
+        /// </summary>
         [WebMethod]
         public void downloadWiki()
         {
@@ -52,6 +55,10 @@ namespace WebRole1
             }
         }
 
+        /// <summary>
+        /// This web method uses the downloaded wiki title and stores the lines contained within. This method
+        /// breaks if there is less 5 MB of available memory
+        /// </summary>
         [WebMethod]
         public void buildTrie()
         {
@@ -66,7 +73,7 @@ namespace WebRole1
                         if (lineCount % 2000 == 0)
                         {
                             float memUsage = memProcess.NextValue();
-                            if (memUsage < 5)
+                            if (memUsage < 50)
                             {
                                 break;
                             }
@@ -85,6 +92,11 @@ namespace WebRole1
             }
         }
 
+        /// <summary>
+        /// This method searches the trie for the given prefix word. It returns a string that contains the results of the search
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns>String</returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String searchTrie(String prefix)
